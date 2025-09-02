@@ -31,8 +31,8 @@ jobs:
       - name: Upload AAR and APK to Release
         uses: softprops/action-gh-release@v1
         with:
-          files: | 
-           - appbar/build/outputs/aar/appbar-release.aar,
-           - app/build/outputs/apk/release/app-release.apk
+          files: |
+            appbar/build/outputs/aar/appbar-release.aar
+            app/build/outputs/apk/release/app-release.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
