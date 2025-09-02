@@ -140,6 +140,7 @@ binding.headerBar.changeHeader { currentAlpha ->
 | 属性                     | 类型        | 说明     |
 |------------------------|-----------|--------|
 | chb_title              | string    | 标题文本   |
+| chb_title_color        | color     | 标题颜色   |
 | chb_title_gravity      | enum      | 标题重力位置 |
 | chb_title_margin_start | dimension | 标题起始边距 |
 | chb_title_margin_end   | dimension | 标题结束边距 |
@@ -165,6 +166,7 @@ binding.headerBar.changeHeader { currentAlpha ->
 | setLeftButton()          | 设置左侧按钮    |
 | setRightButton()         | 设置右侧按钮    |
 | setTitle()               | 设置标题      |
+| setTitleColor()          | 设置标题颜色    |
 | setTitleGravity()        | 设置标题重力    |
 | updateHeaderAlpha()      | 更新头部整体透明度 |
 | updateHeaderBlurAlpha()  | 更新头部模糊透明度 |

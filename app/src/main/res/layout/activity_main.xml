@@ -29,6 +29,7 @@
         app:chb_bkg_blur_radius="25.0"
         app:chb_bkg_blur_target="@id/blur_target"
         app:chb_header_bar_height="60dp"
+        app:chb_left_btn_enable="true"
         app:chb_status_bar_height="20dp"
         app:chb_system_bars_yield_enable="true"
         app:chb_title="@string/app_name"

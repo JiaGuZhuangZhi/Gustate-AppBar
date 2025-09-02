@@ -54,6 +54,7 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
     private var btnLeftMarginStart = 0f
     // 标题参数
     private var title = ""
+    private var titleColor = 0
     private var titleGravity = ChbTitleGravity.CENTER
     private var titleMarginStart = 0f
     private var titleMarginEnd = 0f
@@ -158,6 +159,7 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
      */
     private fun TypedArray.getTitleAttrs() {
         title = getString(R.styleable.ClassicHeaderBar_chb_title) ?: ""
+        titleColor = getColor(R.styleable.ClassicHeaderBar_chb_title_color, 0)
         val gravityValue = getInt(R.styleable.ClassicHeaderBar_chb_title_gravity, 1)
         titleGravity = when (gravityValue) {
             0 -> ChbTitleGravity.START_WITH_LEFT_BTN
@@ -513,6 +515,14 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
     fun setTitle(newTitle: String) {
         title = newTitle
         binding.tvTitle.text = newTitle
+    }
+
+    /**
+     * 设置标题
+     * @param colorRes 所设置的标题颜色的 Res
+     */
+    fun setTitleColor(@ColorRes colorRes: Int) {
+        binding.tvTitle.setTextColor(context.getColor(colorRes))
     }
 
     /**
