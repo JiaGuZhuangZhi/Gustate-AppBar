@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Gustate AppBar</string>
+    <string name="log_no_enable_yield_system_bars_xml">You have not enabled the yield system bar (layout parameter chb_system_bars_yield_enable)</string>
+    <string name="log_no_enable_yield_system_bars_xml_function">You have not enabled the yield system bar (layout parameter chb_system_bars_yield_enable or function setSystemBarsPadding parameter nIsYieldSystemBars)</string>
 </resources>

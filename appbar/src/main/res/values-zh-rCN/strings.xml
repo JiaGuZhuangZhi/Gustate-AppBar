@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">汩态软件栏</string>
+    <string name="log_no_enable_yield_system_bars_xml">你没有开启避让系统栏（布局参数 chb_system_bars_yield_enable）</string>
+    <string name="log_no_enable_yield_system_bars_xml_function">你没有开启避让系统栏（布局参数 chb_system_bars_yield_enable 或 函数 setSystemBarsPadding 参数 nIsYieldSystemBars）</string>
+</resources>
