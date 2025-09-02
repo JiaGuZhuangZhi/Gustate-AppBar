@@ -15,6 +15,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
+import androidx.core.view.isGone
 import androidx.core.view.updateLayoutParams
 import com.gustate.appbar.R
 import com.gustate.appbar.Utils.dpToPx
@@ -387,6 +388,7 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
      * 配置 XML 应用栏左侧按钮
      */
     private fun initLeftButton() {
+        binding.btnLeft.isGone = !isBtnLeft
         if (!isBtnLeft) return
         binding.btnLeft.setImageResource(btnLeftSrcId)
         binding.btnLeft.imageTintList = ColorStateList.valueOf(btnLeftTint)
@@ -409,6 +411,7 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
         nBtnLeftMarginStart: Int
     ) {
         isBtnLeft = nIsBtnLeft
+        binding.btnLeft.isGone = !nIsBtnLeft
         if (!nIsBtnLeft) return
         binding.btnLeft.setImageResource(nBtnLeftSrcId)
         binding.btnLeft.imageTintList = ColorStateList.valueOf(nBtnLeftTint)
@@ -422,45 +425,33 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
      */
     private fun initTitle() {
         binding.tvTitle.text = title
-        val set = ConstraintSet()
-        set.clone(binding.layoutRoot)
+        clearTitleGravity()
         when (titleGravity) {
             ChbTitleGravity.START_WITH_LEFT_BTN -> {
-                if (isBtnLeft) {
-                    set.connect(
-                        binding.tvTitle.id, ConstraintSet.START,
-                        binding.btnLeft.id, ConstraintSet.END,
-                        btnLeftMarginStart.roundToInt()
-                    )
-                } else {
-                    set.connect(
-                        binding.tvTitle.id, ConstraintSet.START,
-                        ConstraintSet.PARENT_ID, ConstraintSet.START,
-                        btnLeftMarginStart.roundToInt()
-                    )
+                binding.tvTitle.updateLayoutParams<LayoutParams> {
+                    topToTop = ConstraintSet.PARENT_ID
+                    bottomToBottom = ConstraintSet.PARENT_ID
+                    startToEnd = binding.btnLeft.id
+                    marginStart = btnLeftMarginStart.roundToInt()
                 }
             }
             ChbTitleGravity.CENTER -> {
-                set.centerHorizontally(binding.tvTitle.id, ConstraintSet.PARENT_ID)
-                set.centerVertically(binding.tvTitle.id, ConstraintSet.PARENT_ID)
+                binding.tvTitle.updateLayoutParams<LayoutParams> {
+                    topToTop = ConstraintSet.PARENT_ID
+                    bottomToBottom = ConstraintSet.PARENT_ID
+                    startToStart = ConstraintSet.PARENT_ID
+                    endToEnd = ConstraintSet.PARENT_ID
+                }
             }
             ChbTitleGravity.IN_FRONT_OF_RIGHT_BTN -> {
-                if (isBtnRight) {
-                    set.connect(
-                        binding.tvTitle.id, ConstraintSet.END,
-                        binding.btnRight.id, ConstraintSet.START,
-                        btnRightMarginEnd.roundToInt()
-                    )
-                } else {
-                    set.connect(
-                        binding.tvTitle.id, ConstraintSet.END,
-                        ConstraintSet.PARENT_ID, ConstraintSet.END,
-                        btnRightMarginEnd.roundToInt()
-                    )
+                binding.tvTitle.updateLayoutParams<LayoutParams> {
+                    topToTop = ConstraintSet.PARENT_ID
+                    bottomToBottom = ConstraintSet.PARENT_ID
+                    endToStart = binding.btnRight.id
+                    marginEnd = btnRightMarginEnd.roundToInt()
                 }
             }
         }
-        set.applyTo(binding.layoutRoot)
     }
 
     /**
@@ -473,45 +464,46 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
         nTitleGravity: ChbTitleGravity,
         nStartOrEndMargin: Int
     ) {
-        val set = ConstraintSet()
-        set.clone(binding.layoutRoot)
+        clearTitleGravity()
         when (nTitleGravity) {
             ChbTitleGravity.START_WITH_LEFT_BTN -> {
-                if (isBtnLeft) {
-                    set.connect(
-                        binding.tvTitle.id, ConstraintSet.START,
-                        binding.btnLeft.id, ConstraintSet.END,
-                        nStartOrEndMargin
-                    )
-                } else {
-                    set.connect(
-                        binding.tvTitle.id, ConstraintSet.START,
-                        ConstraintSet.PARENT_ID, ConstraintSet.START,
-                        nStartOrEndMargin
-                    )
+                binding.tvTitle.updateLayoutParams<LayoutParams> {
+                    topToTop = ConstraintSet.PARENT_ID
+                    bottomToBottom = ConstraintSet.PARENT_ID
+                    startToEnd = binding.btnLeft.id
+                    marginStart = nStartOrEndMargin
                 }
             }
             ChbTitleGravity.CENTER -> {
-                set.centerHorizontally(binding.tvTitle.id, ConstraintSet.PARENT_ID)
-                set.centerVertically(binding.tvTitle.id, ConstraintSet.PARENT_ID)
+                binding.tvTitle.updateLayoutParams<LayoutParams> {
+                    topToTop = ConstraintSet.PARENT_ID
+                    bottomToBottom = ConstraintSet.PARENT_ID
+                    startToStart = ConstraintSet.PARENT_ID
+                    endToEnd = ConstraintSet.PARENT_ID
+                }
             }
             ChbTitleGravity.IN_FRONT_OF_RIGHT_BTN -> {
-                if (isBtnRight) {
-                    set.connect(
-                        binding.tvTitle.id, ConstraintSet.END,
-                        binding.btnRight.id, ConstraintSet.START,
-                        nStartOrEndMargin
-                    )
-                } else {
-                    set.connect(
-                        binding.tvTitle.id, ConstraintSet.END,
-                        ConstraintSet.PARENT_ID, ConstraintSet.END,
-                        nStartOrEndMargin
-                    )
+                binding.tvTitle.updateLayoutParams<LayoutParams> {
+                    topToTop = ConstraintSet.PARENT_ID
+                    bottomToBottom = ConstraintSet.PARENT_ID
+                    endToStart = binding.btnRight.id
+                    marginEnd = nStartOrEndMargin
                 }
             }
         }
-        set.applyTo(binding.layoutRoot)
+    }
+
+    private fun clearTitleGravity() {
+        binding.tvTitle.updateLayoutParams<LayoutParams> {
+            topToTop = ConstraintSet.UNSET
+            bottomToBottom = ConstraintSet.UNSET
+            startToStart = ConstraintSet.UNSET
+            endToEnd = ConstraintSet.UNSET
+            startToEnd = ConstraintSet.UNSET
+            endToStart = ConstraintSet.UNSET
+            marginStart = 0
+            marginEnd = 0
+        }
     }
 
     /**
@@ -532,6 +524,7 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
      * 配置 XML 应用栏右侧按钮
      */
     private fun initRightButton() {
+        binding.btnRight.isGone = !isBtnRight
         if (!isBtnRight) return
         binding.btnRight.setImageResource(btnRightSrcId)
         binding.btnRight.imageTintList = ColorStateList.valueOf(btnRightTint)
@@ -554,6 +547,7 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
         nBtnRightMarginStart: Int
     ) {
         isBtnRight = nIsBtnRight
+        binding.btnRight.isGone = !nIsBtnRight
         if (!nIsBtnRight) return
         binding.btnRight.setImageResource(nBtnRightSrcId)
         binding.btnRight.imageTintList = ColorStateList.valueOf(nBtnRightTint)

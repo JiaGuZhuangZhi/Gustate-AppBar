@@ -15,7 +15,7 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="414dp"
+            android:layout_height="347dp"
             app:srcCompat="@drawable/ic_launcher_background" />
     </eightbitlab.com.blurview.BlurTarget>
 
@@ -32,6 +32,7 @@
         app:chb_status_bar_height="20dp"
         app:chb_system_bars_yield_enable="true"
         app:chb_title="@string/app_name"
+        app:chb_title_gravity="chb_center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
