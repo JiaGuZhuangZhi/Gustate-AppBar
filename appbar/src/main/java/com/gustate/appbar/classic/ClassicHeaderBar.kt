@@ -430,13 +430,13 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
                     set.connect(
                         binding.tvTitle.id, ConstraintSet.START,
                         binding.btnLeft.id, ConstraintSet.END,
-                        btnLeftMarginStart.dpToPx(context).roundToInt()
+                        btnLeftMarginStart.roundToInt()
                     )
                 } else {
                     set.connect(
                         binding.tvTitle.id, ConstraintSet.START,
                         ConstraintSet.PARENT_ID, ConstraintSet.START,
-                        btnLeftMarginStart.dpToPx(context).roundToInt()
+                        btnLeftMarginStart.roundToInt()
                     )
                 }
             }
@@ -449,13 +449,13 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
                     set.connect(
                         binding.tvTitle.id, ConstraintSet.END,
                         binding.btnRight.id, ConstraintSet.START,
-                        btnRightMarginEnd.dpToPx(context).roundToInt()
+                        btnRightMarginEnd.roundToInt()
                     )
                 } else {
                     set.connect(
                         binding.tvTitle.id, ConstraintSet.END,
                         ConstraintSet.PARENT_ID, ConstraintSet.END,
-                        btnRightMarginEnd.dpToPx(context).roundToInt()
+                        btnRightMarginEnd.roundToInt()
                     )
                 }
             }
