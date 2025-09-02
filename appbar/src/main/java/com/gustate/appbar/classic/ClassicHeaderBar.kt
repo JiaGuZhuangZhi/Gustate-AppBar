@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
+import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -262,9 +263,27 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
      * 通常是设置滚动监听时可以控制何时显示 Header
      * @param function 暴露原 alpha 并返回要修改的 alpha
      */
-    fun changeHeader(function: (Float) -> Float) {
+    fun updateHeaderAlpha(function: (Float) -> Float) {
         val headerAlpha = function(binding.layoutRoot.alpha)
         binding.layoutRoot.alpha = headerAlpha
+    }
+
+    /**
+     * 可以对 HeaderBlur 可见度进行修改
+     * 通常是设置滚动监听时可以控制何时显示 HeaderBlur
+     * @param function 暴露原 alpha 并返回要修改的 alpha
+     */
+    fun updateHeaderBlurAlpha(function: (Float) -> Float) {
+        val headerAlpha = function(binding.blurRoot.alpha)
+        binding.blurRoot.alpha = headerAlpha
+    }
+
+    /**
+     * 可以对 TitleView 进行修改
+     * @param function 暴露 tvTitle
+     */
+    fun updateHeaderTitleView(function: (TextView) -> Unit) {
+        function(binding.tvTitle)
     }
 
     /**

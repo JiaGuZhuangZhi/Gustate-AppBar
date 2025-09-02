@@ -98,75 +98,77 @@ binding.headerBar.changeHeader { currentAlpha ->
 
 ### 系统栏属性
 
-|属性|类型|说明|
-|-|-|-|
-|chb_status_bar_height|dimension|状态栏高度|
-|chb_left_system_bar_width|dimension|左侧系统栏宽度|
-|chb_right_system_bar_width|dimension|右侧系统栏宽度|
-|chb_system_bars_yield_enable|boolean|是否避让系统栏|
+| 属性                           | 类型        | 说明      |
+|------------------------------|-----------|---------|
+| chb_status_bar_height        | dimension | 状态栏高度   |
+| chb_left_system_bar_width    | dimension | 左侧系统栏宽度 |
+| chb_right_system_bar_width   | dimension | 右侧系统栏宽度 |
+| chb_system_bars_yield_enable | boolean   | 是否避让系统栏 |
 
 ### 基本属性
 
-|属性|类型|说明|
-|-|-|-|
-|chb_header_bar_height|dimension|应用栏高度|
+| 属性                    | 类型        | 说明    |
+|-----------------------|-----------|-------|
+| chb_header_bar_height | dimension | 应用栏高度 |
 
 ### 背景属性
 
-|属性|类型|说明|
-|-|-|-|
-|chb_bkg|reference/color|背景资源|
-|chb_bkg_blur_enable|boolean|是否启用模糊效果|
-|chb_bkg_blur_radius|float|模糊半径|
-|chb_bkg_blur_overlay|color|模糊覆盖层颜色|
-|chb_bkg_blur_overlay_alpha|float|模糊覆盖层透明度|
-|chb_bkg_blur_target|reference|模糊目标视图|
+| 属性                         | 类型              | 说明       |
+|----------------------------|-----------------|----------|
+| chb_bkg                    | reference/color | 背景资源     |
+| chb_bkg_blur_enable        | boolean         | 是否启用模糊效果 |
+| chb_bkg_blur_radius        | float           | 模糊半径     |
+| chb_bkg_blur_overlay       | color           | 模糊覆盖层颜色  |
+| chb_bkg_blur_overlay_alpha | float           | 模糊覆盖层透明度 |
+| chb_bkg_blur_target        | reference       | 模糊目标视图   |
 
 ### 按钮属性
 
-|属性|类型|说明|
-|-|-|-|
-|chb_left_btn_enable|boolean|是否显示左侧按钮|
-|chb_left_btn_src|reference|左侧按钮图标|
-|chb_left_btn_tint|color|左侧按钮色调|
-|chb_left_btn_margin_start|dimension|左侧按钮起始边距|
-|chb_right_btn_enable|boolean|是否显示右侧按钮|
-|chb_right_btn_src|reference|右侧按钮图标|
-|chb_right_btn_tint|color|右侧按钮色调|
-|chb_right_btn_margin_end|dimension|右侧按钮结束边距|
+| 属性                        | 类型        | 说明       |
+|---------------------------|-----------|----------|
+| chb_left_btn_enable       | boolean   | 是否显示左侧按钮 |
+| chb_left_btn_src          | reference | 左侧按钮图标   |
+| chb_left_btn_tint         | color     | 左侧按钮色调   |
+| chb_left_btn_margin_start | dimension | 左侧按钮起始边距 |
+| chb_right_btn_enable      | boolean   | 是否显示右侧按钮 |
+| chb_right_btn_src         | reference | 右侧按钮图标   |
+| chb_right_btn_tint        | color     | 右侧按钮色调   |
+| chb_right_btn_margin_end  | dimension | 右侧按钮结束边距 |
 
 ### 标题属性
 
-|属性|类型|说明|
-|-|-|-|
-|chb_title|string|标题文本|
-|chb_title_gravity|enum|标题重力位置|
-|chb_title_margin_start|dimension|标题起始边距|
-|chb_title_margin_end|dimension|标题结束边距|
+| 属性                     | 类型        | 说明     |
+|------------------------|-----------|--------|
+| chb_title              | string    | 标题文本   |
+| chb_title_gravity      | enum      | 标题重力位置 |
+| chb_title_margin_start | dimension | 标题起始边距 |
+| chb_title_margin_end   | dimension | 标题结束边距 |
 
 ## 🎨 标题重力选项
 
-|选项|值|说明|
-|-|-|-|
-|START_WITH_LEFT_BTN|0|紧靠左侧按钮|
-|CENTER|1|居中显示（默认）|
-|IN_FRONT_OF_RIGHT_BTN|2|紧靠右侧按钮前|
+| 选项                    | 值 | 说明       |
+|-----------------------|---|----------|
+| START_WITH_LEFT_BTN   | 0 | 紧靠左侧按钮   |
+| CENTER                | 1 | 居中显示（默认） |
+| IN_FRONT_OF_RIGHT_BTN | 2 | 紧靠右侧按钮前  |
 
 ## 📖 API 参考
 
 ### 主要方法
 
-|方法|说明|
-|-|-|
-|setSystemBarsPadding()|设置系统栏边距|
-|setHeaderBarHeight()|设置应用栏高度|
-|setHeaderBarBackground()|设置背景|
-|enableBlurEffect()|启用/禁用模糊效果|
-|setLeftButton()|设置左侧按钮|
-|setRightButton()|设置右侧按钮|
-|setTitle()|设置标题|
-|setTitleGravity()|设置标题重力|
-|changeHeader()|修改头部透明度|
+| 方法                       | 说明        |
+|--------------------------|-----------|
+| setSystemBarsPadding()   | 设置系统栏边距   |
+| setHeaderBarHeight()     | 设置应用栏高度   |
+| setHeaderBarBackground() | 设置背景      |
+| enableBlurEffect()       | 启用/禁用模糊效果 |
+| setLeftButton()          | 设置左侧按钮    |
+| setRightButton()         | 设置右侧按钮    |
+| setTitle()               | 设置标题      |
+| setTitleGravity()        | 设置标题重力    |
+| updateHeaderAlpha()      | 更新头部整体透明度 |
+| updateHeaderBlurAlpha()  | 更新头部模糊透明度 |
+| updateHeaderTitleView()  | 更新头部标题视图  |
 
 ## 🤝 贡献
 
