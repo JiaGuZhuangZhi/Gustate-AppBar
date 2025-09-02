@@ -426,22 +426,38 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
         set.clone(binding.layoutRoot)
         when (titleGravity) {
             ChbTitleGravity.START_WITH_LEFT_BTN -> {
-                set.connect(
-                    binding.tvTitle.id, ConstraintSet.START,
-                    binding.btnLeft.id, ConstraintSet.END,
-                    btnLeftMarginStart.dpToPx(context).roundToInt()
-                )
+                if (isBtnLeft) {
+                    set.connect(
+                        binding.tvTitle.id, ConstraintSet.START,
+                        binding.btnLeft.id, ConstraintSet.END,
+                        btnLeftMarginStart.dpToPx(context).roundToInt()
+                    )
+                } else {
+                    set.connect(
+                        binding.tvTitle.id, ConstraintSet.START,
+                        ConstraintSet.PARENT_ID, ConstraintSet.START,
+                        btnLeftMarginStart.dpToPx(context).roundToInt()
+                    )
+                }
             }
             ChbTitleGravity.CENTER -> {
                 set.centerHorizontally(binding.tvTitle.id, ConstraintSet.PARENT_ID)
                 set.centerVertically(binding.tvTitle.id, ConstraintSet.PARENT_ID)
             }
             ChbTitleGravity.IN_FRONT_OF_RIGHT_BTN -> {
-                set.connect(
-                    binding.tvTitle.id, ConstraintSet.END,
-                    binding.btnRight.id, ConstraintSet.START,
-                    btnRightMarginEnd.dpToPx(context).roundToInt()
-                )
+                if (isBtnRight) {
+                    set.connect(
+                        binding.tvTitle.id, ConstraintSet.END,
+                        binding.btnRight.id, ConstraintSet.START,
+                        btnRightMarginEnd.dpToPx(context).roundToInt()
+                    )
+                } else {
+                    set.connect(
+                        binding.tvTitle.id, ConstraintSet.END,
+                        ConstraintSet.PARENT_ID, ConstraintSet.END,
+                        btnRightMarginEnd.dpToPx(context).roundToInt()
+                    )
+                }
             }
         }
         set.applyTo(binding.layoutRoot)
@@ -461,22 +477,38 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
         set.clone(binding.layoutRoot)
         when (nTitleGravity) {
             ChbTitleGravity.START_WITH_LEFT_BTN -> {
-                set.connect(
-                    binding.tvTitle.id, ConstraintSet.START,
-                    binding.btnLeft.id, ConstraintSet.END,
-                    nStartOrEndMargin
-                )
+                if (isBtnLeft) {
+                    set.connect(
+                        binding.tvTitle.id, ConstraintSet.START,
+                        binding.btnLeft.id, ConstraintSet.END,
+                        nStartOrEndMargin
+                    )
+                } else {
+                    set.connect(
+                        binding.tvTitle.id, ConstraintSet.START,
+                        ConstraintSet.PARENT_ID, ConstraintSet.START,
+                        nStartOrEndMargin
+                    )
+                }
             }
             ChbTitleGravity.CENTER -> {
                 set.centerHorizontally(binding.tvTitle.id, ConstraintSet.PARENT_ID)
                 set.centerVertically(binding.tvTitle.id, ConstraintSet.PARENT_ID)
             }
             ChbTitleGravity.IN_FRONT_OF_RIGHT_BTN -> {
-                set.connect(
-                    binding.tvTitle.id, ConstraintSet.END,
-                    binding.btnRight.id, ConstraintSet.START,
-                    nStartOrEndMargin
-                )
+                if (isBtnRight) {
+                    set.connect(
+                        binding.tvTitle.id, ConstraintSet.END,
+                        binding.btnRight.id, ConstraintSet.START,
+                        nStartOrEndMargin
+                    )
+                } else {
+                    set.connect(
+                        binding.tvTitle.id, ConstraintSet.END,
+                        ConstraintSet.PARENT_ID, ConstraintSet.END,
+                        nStartOrEndMargin
+                    )
+                }
             }
         }
         set.applyTo(binding.layoutRoot)
