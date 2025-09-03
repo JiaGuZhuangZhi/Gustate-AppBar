@@ -120,7 +120,6 @@ binding.headerBar.changeHeader { currentAlpha ->
 | chb_bkg_blur_radius        | float           | 模糊半径     |
 | chb_bkg_blur_overlay       | color           | 模糊覆盖层颜色  |
 | chb_bkg_blur_overlay_alpha | float           | 模糊覆盖层透明度 |
-| chb_bkg_blur_target        | reference       | 模糊目标视图   |
 
 ### 按钮属性
 
@@ -162,7 +161,6 @@ binding.headerBar.changeHeader { currentAlpha ->
 | setSystemBarsPadding()   | 设置系统栏边距   |
 | setHeaderBarHeight()     | 设置应用栏高度   |
 | setHeaderBarBackground() | 设置背景      |
-| enableBlurEffect()       | 启用/禁用模糊效果 |
 | setLeftButton()          | 设置左侧按钮    |
 | setRightButton()         | 设置右侧按钮    |
 | setTitle()               | 设置标题      |

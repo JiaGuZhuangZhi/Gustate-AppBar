@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <eightbitlab.com.blurview.BlurView
+    <net.center.blurview.ShapeBlurView
         android:id="@+id/blur_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,5 +55,5 @@
                 app:srcCompat="@drawable/ic_settings"
                 tools:ignore="ContentDescription" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </eightbitlab.com.blurview.BlurView>
+    </net.center.blurview.ShapeBlurView>
 </androidx.constraintlayout.widget.ConstraintLayout>

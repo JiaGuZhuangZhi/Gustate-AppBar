@@ -7,18 +7,6 @@
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
-    <eightbitlab.com.blurview.BlurTarget
-        android:id="@+id/blur_target"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="347dp"
-            app:srcCompat="@drawable/ic_launcher_background" />
-    </eightbitlab.com.blurview.BlurTarget>
-
     <com.gustate.appbar.classic.ClassicHeaderBar
         android:id="@+id/classicHeaderBar"
         android:layout_width="0dp"
@@ -27,7 +15,6 @@
         app:chb_bkg_blur_overlay="@color/white"
         app:chb_bkg_blur_overlay_alpha="0.6"
         app:chb_bkg_blur_radius="25.0"
-        app:chb_bkg_blur_target="@id/blur_target"
         app:chb_header_bar_height="60dp"
         app:chb_left_btn_enable="true"
         app:chb_status_bar_height="20dp"

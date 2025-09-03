@@ -14,7 +14,6 @@
         <attr name="chb_bkg_blur_radius" format="float" />
         <attr name="chb_bkg_blur_overlay" format="color" />
         <attr name="chb_bkg_blur_overlay_alpha" format="float" />
-        <attr name="chb_bkg_blur_target" format="reference" />
         <!-- 左侧按钮参数 -->
         <attr name="chb_left_btn_enable" format="boolean" />
         <attr name="chb_left_btn_src" format="reference" />

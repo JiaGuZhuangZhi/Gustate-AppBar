@@ -20,7 +20,8 @@ import androidx.core.view.updateLayoutParams
 import com.gustate.appbar.R
 import com.gustate.appbar.Utils.dpToPx
 import com.gustate.appbar.databinding.LayoutHeaderBarBinding
-import eightbitlab.com.blurview.BlurTarget
+import net.center.blurview.ShapeBlurView
+import net.center.blurview.enu.BlurMode
 import kotlin.math.roundToInt
 
 /**
@@ -46,7 +47,6 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
     private var bkgBlurRadius = 0f
     private var bkgBlurOverlay = 0
     private var bkgBlurOverlayAlpha = 0f
-    private var bkgBlurTargetId = -1
     // 左侧按钮参数
     private var isBtnLeft = true
     private var btnLeftSrcId = 0
@@ -134,8 +134,6 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
             R.styleable.ClassicHeaderBar_chb_bkg_blur_overlay, 0)
         bkgBlurOverlayAlpha = getFloat(
             R.styleable.ClassicHeaderBar_chb_bkg_blur_overlay_alpha, 0f)
-        bkgBlurTargetId = getResourceId(
-            R.styleable.ClassicHeaderBar_chb_bkg_blur_target, -1)
     }
 
     /**
@@ -333,15 +331,6 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
     }
 
     /**
-     * 代码动态开启模糊效果
-     * @param enable 是否开启
-     */
-    fun enableBlurEffect(enable: Boolean) {
-        isBkgBlur = enable
-        binding.blurRoot.setBlurEnabled(enable)
-    }
-
-    /**
      * 配置 XML 应用栏部分背景模糊
      * 注：仅当背景模糊被启用时可用
      */
@@ -350,40 +339,36 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
         binding.layoutRoot.setBackgroundColor(0)
         val alphaInt = (bkgBlurOverlayAlpha * 255).roundToInt()
         val overlayColor = (alphaInt shl 24) or (bkgBlurOverlay and 0x00FFFFFF)
-        if (bkgBlurTargetId != -1) {
-            post {
-                val blurTarget = rootView.findViewById<BlurTarget>(bkgBlurTargetId)
-                binding.blurRoot
-                    .setupWith(blurTarget)
-                    .setBlurRadius(bkgBlurRadius)
-                    .setOverlayColor(overlayColor)
-            }
-        }
+        binding.blurRoot.refreshView(
+            ShapeBlurView.build(context)
+                .setBlurMode(BlurMode.MODE_RECTANGLE)
+                .setBlurRadius(bkgBlurRadius)
+                .setOverlayColor(overlayColor)
+        )
     }
 
     /**
      * 代码动态设置应用栏部分背景模糊
      * 注：仅当背景模糊被启用时可用
      * @param nIsBkgBlur 是否开启模糊
-     * @param nBlurTarget 需要模糊的 BlurTarget
-     * @see BlurTarget
      * @param nBlurRadius 模糊度
      * @param nOverlayColor 模糊遮罩颜色
      * ？什么，您想让我在这里为您提供设置纯色的透明度？？？ 您可真懒！！
      */
     fun setBackgroundBlur(
         nIsBkgBlur: Boolean,
-        nBlurTarget: BlurTarget,
         nBlurRadius: Float,
         nOverlayColor: Color
     ) {
         isBkgBlur = nIsBkgBlur
         if (!nIsBkgBlur) return
         binding.layoutRoot.setBackgroundColor(0)
-        binding.blurRoot
-            .setupWith(nBlurTarget)
-            .setBlurRadius(nBlurRadius)
-            .setOverlayColor(nOverlayColor.toArgb())
+        binding.blurRoot.refreshView(
+            ShapeBlurView.build(context)
+                .setBlurMode(BlurMode.MODE_RECTANGLE)
+                .setBlurRadius(nBlurRadius)
+                .setOverlayColor(nOverlayColor.toArgb())
+        )
     }
 
     /**
