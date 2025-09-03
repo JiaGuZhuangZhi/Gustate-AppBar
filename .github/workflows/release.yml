@@ -3,14 +3,19 @@ name: Release and Publish
 on:
   push:
     tags:
-      - 'v*' # 推送v开头的tag时触发
+      - 'v*'
 
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
-
     permissions:
       contents: write
+
+    env:
+      KEYSTORE_PATH: ${{ github.workspace }}/app/keystore.jks
+      KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+      KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
     steps:
       - name: Checkout code
@@ -21,6 +26,11 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+
+      - name: Decode Keystore File
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > ${{ github.workspace }}/app/keystore.jks
+        # 确保输出路径与 env.KEYSTORE_PATH 和 build.gradle.kts 中的路径一致
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
