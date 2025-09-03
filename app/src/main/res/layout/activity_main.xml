@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_launcher_background"
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
@@ -20,6 +21,7 @@
         app:chb_status_bar_height="20dp"
         app:chb_system_bars_yield_enable="true"
         app:chb_title="@string/app_name"
+        app:chb_title_color="@color/black"
         app:chb_title_gravity="chb_center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

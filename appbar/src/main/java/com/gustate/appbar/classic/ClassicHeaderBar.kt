@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.gustate.appbar.classic
 
 import android.content.Context
@@ -8,7 +10,6 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
-import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -16,9 +17,12 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
 import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import com.gustate.appbar.R
 import com.gustate.appbar.Utils.dpToPx
+import com.gustate.appbar.ViewHelpers.slideDown
+import com.gustate.appbar.ViewHelpers.slideUp
 import com.gustate.appbar.databinding.LayoutHeaderBarBinding
 import net.center.blurview.ShapeBlurView
 import net.center.blurview.enu.BlurMode
@@ -54,7 +58,7 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
     private var btnLeftMarginStart = 0f
     // 标题参数
     private var title = ""
-    private var titleColor: ColorStateList? = null
+    private var titleColor = 0
     private var titleGravity = ChbTitleGravity.CENTER
     private var titleMarginStart = 0f
     private var titleMarginEnd = 0f
@@ -157,7 +161,7 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
      */
     private fun TypedArray.getTitleAttrs() {
         title = getString(R.styleable.ClassicHeaderBar_chb_title) ?: ""
-        titleColor = getColorStateList(R.styleable.ClassicHeaderBar_chb_title_color)
+        titleColor = getColor(R.styleable.ClassicHeaderBar_chb_title_color, 0)
         val gravityValue = getInt(R.styleable.ClassicHeaderBar_chb_title_gravity, 1)
         titleGravity = when (gravityValue) {
             0 -> ChbTitleGravity.START_WITH_LEFT_BTN
@@ -202,10 +206,11 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
             }
             return
         }
-        binding.blurRoot.setPadding(
-            leftSystemBarWidth.roundToInt(),
-            statusBarHeight.roundToInt(),
-            rightSystemBarWidth.roundToInt(), 0)
+        binding.layoutHeader.updateLayoutParams<MarginLayoutParams> {
+            marginStart = leftSystemBarWidth.roundToInt()
+            topMargin = statusBarHeight.roundToInt()
+            marginEnd = rightSystemBarWidth.roundToInt()
+        }
     }
 
     /**
@@ -229,10 +234,11 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
                 context.getString(R.string.log_no_enable_yield_system_bars_xml_function))
             return
         }
-        binding.blurRoot.setPadding(
-            nLeftSystemBarWidth,
-            nStatusBarHeight,
-            nRightSystemBarWidth, 0)
+        binding.layoutHeader.updateLayoutParams<MarginLayoutParams> {
+            marginStart = nLeftSystemBarWidth
+            topMargin = nStatusBarHeight
+            marginEnd = nRightSystemBarWidth
+        }
     }
 
     /**
@@ -280,19 +286,17 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
     }
 
     /**
-     * 可以对 TitleView 进行修改
-     * @param function 暴露 tvTitle
-     */
-    fun updateHeaderTitleView(function: (TextView) -> Unit) {
-        function(binding.tvTitle)
-    }
-
-    /**
      * 配置 XML 应用栏部分背景
      * 注：仅当背景模糊被禁用时可用
      */
     private fun initHeaderBarBackground() {
         if (isBkgBlur) return
+        if (bkgResId == 0) {
+            Log.i(
+                context.getString(R.string.app_name),
+                "You have not set background in XML")
+            return
+        }
         val resourceTypeName = context.resources.getResourceTypeName(bkgResId)
         when (resourceTypeName) {
             "drawable", "mipmap" -> {
@@ -306,8 +310,7 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
             else -> {
                 Log.i(
                     context.getString(R.string.app_name),
-                    "You have not set background in XML"
-                )
+                    "i do not background is who???")
             }
         }
     }
@@ -509,6 +512,19 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
      */
     fun setTitleColor(@ColorRes colorRes: Int) {
         binding.tvTitle.setTextColor(context.getColor(colorRes))
+    }
+
+    /**
+     * 更新标题状态
+     * @param visible 是否显示
+     * @param anim 是否启用动画
+     * @param duration 动画时长
+     */
+    fun updateTitleVisible(visible: Boolean, anim: Boolean, duration: Long = 300) {
+        if (anim) {
+            if (visible) binding.tvTitle.slideUp(duration)
+            else binding.tvTitle.slideDown(duration)
+        } else binding.tvTitle.isVisible = visible
     }
 
     /**

@@ -156,19 +156,19 @@ binding.headerBar.changeHeader { currentAlpha ->
 
 ### 主要方法
 
-| 方法                       | 说明        |
-|--------------------------|-----------|
-| setSystemBarsPadding()   | 设置系统栏边距   |
-| setHeaderBarHeight()     | 设置应用栏高度   |
-| setHeaderBarBackground() | 设置背景      |
-| setLeftButton()          | 设置左侧按钮    |
-| setRightButton()         | 设置右侧按钮    |
-| setTitle()               | 设置标题      |
-| setTitleColor()          | 设置标题颜色    |
-| setTitleGravity()        | 设置标题重力    |
-| updateHeaderAlpha()      | 更新头部整体透明度 |
-| updateHeaderBlurAlpha()  | 更新头部模糊透明度 |
-| updateHeaderTitleView()  | 更新头部标题视图  |
+| 方法                       | 说明         |
+|--------------------------|------------|
+| setSystemBarsPadding()   | 设置系统栏边距    |
+| setHeaderBarHeight()     | 设置应用栏高度    |
+| setHeaderBarBackground() | 设置背景       |
+| setLeftButton()          | 设置左侧按钮     |
+| setRightButton()         | 设置右侧按钮     |
+| setTitle()               | 设置标题       |
+| setTitleColor()          | 设置标题颜色     |
+| setTitleGravity()        | 设置标题重力     |
+| updateHeaderAlpha()      | 更新头部整体透明度  |
+| updateHeaderBlurAlpha()  | 更新头部模糊透明度  |
+| updateTitleVisible()     | 更新头部标题可视状态 |
 
 ## 🤝 贡献
 
