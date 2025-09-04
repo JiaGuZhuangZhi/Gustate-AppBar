@@ -132,7 +132,7 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
             R.styleable.ClassicHeaderBar_chb_bkg, 0)
         isBkgBlur = getBoolean(
             R.styleable.ClassicHeaderBar_chb_bkg_blur_enable, true)
-        bkgBlurRadius = getFloat(
+        bkgBlurRadius = getDimension(
             R.styleable.ClassicHeaderBar_chb_bkg_blur_radius, 25f)
         bkgBlurOverlay = getColor(
             R.styleable.ClassicHeaderBar_chb_bkg_blur_overlay, 0)
