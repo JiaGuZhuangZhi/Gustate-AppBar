@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
+import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -411,6 +412,16 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
     }
 
     /**
+     * 代码动态设置左侧按钮点击监听
+     * @param onClick 点击回调
+     */
+    fun setOnLeftBtnClickListener(onClick: (ImageView) -> Unit) {
+        binding.btnLeft.setOnClickListener {
+            onClick(binding.btnLeft)
+        }
+    }
+
+    /**
      * 配置 XML 应用栏标题
      */
     private fun initTitle() {
@@ -565,6 +576,16 @@ class ClassicHeaderBar(context: Context, attrs: AttributeSet) : ConstraintLayout
         binding.btnRight.imageTintList = ColorStateList.valueOf(nBtnRightTint)
         binding.btnRight.updateLayoutParams<MarginLayoutParams> {
             marginStart = nBtnRightMarginStart
+        }
+    }
+
+    /**
+     * 代码动态设置右侧按钮点击监听
+     * @param onClick 点击回调
+     */
+    fun setOnRightBtnClickListener(onClick: (ImageView) -> Unit) {
+        binding.btnRight.setOnClickListener {
+            onClick(binding.btnRight)
         }
     }
 }
