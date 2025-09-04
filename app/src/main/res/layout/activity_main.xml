@@ -15,7 +15,7 @@
         app:chb_bkg_blur_enable="true"
         app:chb_bkg_blur_overlay="@color/white"
         app:chb_bkg_blur_overlay_alpha="0.6"
-        app:chb_bkg_blur_radius="25.0"
+        app:chb_bkg_blur_radius="25dp"
         app:chb_header_bar_height="60dp"
         app:chb_left_btn_enable="true"
         app:chb_status_bar_height="20dp"
